@@ -1,0 +1,4 @@
+- [x] Fix nested form tags in ecom_app/templates/app/checkout.html by removing the outer form and ensuring only one form with proper action and id exists.
+- [x] Add LoginRequiredMixin to Checkout class to ensure only logged-in users can access.
+- [x] Add conditional display in checkout.html to show a message if no addresses are found.
+- [ ] Test the checkout page to verify addresses are displayed or the message shows.

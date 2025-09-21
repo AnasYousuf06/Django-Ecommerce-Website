@@ -1,0 +1,100 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Daily Product | {%block title %} {% endblock title %}</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel ='stylesheet' href="{% static 'app/css/all.min.css' %}">
+    <link rel ='stylesheet' href="{% static 'app/css/owl.carousel.min.css' %}">
+    <link rel ='stylesheet' href="{% static 'app/css/style.css' %}">
+  </head>
+  <body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static 'app/js/all.min.js' %}"></script>
+    <script src="{% static 'app/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'app/js/myscript.js' %}"></script>
+   
+
+
+
+    <nav class="navbar navbar-expand-lg bg-success">
+  <div class="container-fluid">
+    <a class='navbar-brand' href="#">
+    <img src="{% static 'app/images/product/Neel.png'%}" width="70" height="50"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        {% if not request.user_authenticated%}
+        <li class="nav-item">
+          <a class="nav-link active text-white" aria-current="page" href="{% url 'home' %}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="{% url 'contact' %}">Contact US</a>
+        </li>
+         <li class="nav-item">
+          <a class="nav-link text-white" href="{% url 'about' %}">About US</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Product
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'category' 'ML'%}">Milk</a></li>
+            <li><a class="dropdown-item" href="{% url 'category' 'GH'%}">Ghee</a></li>
+            <li><a class="dropdown-item" href="{% url 'category' 'LS'%}">Lassi</a></li>
+            <li><a class="dropdown-item" href="{% url 'category' 'CZ'%}">Cheese</a></li>
+            <li><a class="dropdown-item" href="{% url 'category' 'IC'%}">IceCreams</a></li>
+          </ul>
+        </li>
+       
+      </ul>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+      </div>
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+            <li class="nav-item dropdown mx-2" href="#">
+            <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Profile
+          </a>
+          <ul class='dropdown-menu' aria-labeledby='profileDraopdown'>
+            <li><a class="dropdown-item " href="{% url 'profile' %}">Profile</a> </li>
+            <li><a class="dropdown-item " href="#"> Order</a></li>
+            <li>
+          <form method="post" action="{% url 'logout' %}" style="display: inline;">
+          {% csrf_token %}
+          <button type="submit" class="dropdown-item">Logout</button>
+          </form>
+           </li>
+            <li><a class="dropdown-item " href="{% url 'passwordchange' %}">Change Password</a></li>
+            </li>
+          </ul>
+
+
+          <li class="nav-link text-white mx-2 mb-lg-0 mb-2"><a class="dropdown-item" href="#">Wishlist</a></li>
+            <li class="nav-link text-white mx-2 mb-lg-0 mb-2"><a class="dropdown-item" href="{% url 'showcart' %}">Cart-4</a></li>
+            {%else%}
+           <li class="nav-link text-white mx-2 mb-lg-0 mb-2"><a class="dropdown-item" href="{% url 'login' %}">Login</a></li>
+            <li class="nav-link text-white mx-2 mb-lg-0 mb-2"><a class="dropdown-item" href="{% url 'registration' %}">Registration</a></li>
+            {% endif %}
+  </div>
+</nav>
+
+
+{%block banner_slider %}{% endblock banner_slider %}
+{%block information %}{% endblock information %}
+{%block main-content %}{% endblock main-content %}
+<footer class="container-fluid fixed-bottom bg-success text-center p-2  mt-5" >
+  COPYRIGHT 2025 DEVELOP BY : ANAS YOUSUF
+</footer>
+  </body>
+</html>
